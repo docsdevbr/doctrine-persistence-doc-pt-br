@@ -17,10 +17,15 @@ Se esta documentação não estiver ajudando a responder as dúvidas que você t
 sobre o projeto Doctrine Persistence, não entre em pânico.
 Você pode obter ajuda de diferentes fontes:
 
--  Sala de bate-papo do Slack `#persistence <https://www.doctrine-project.org/slack>`_
--  No `Stack Overflow <http://stackoverflow.com/questions/tagged/doctrine-persistence>`_
--  A `lista de discussão do Doctrine <http://groups.google.com/group/doctrine-user>`_
--  Relatando uma falha no `GitHub <https://github.com/doctrine/persistence/issues>`_.
+- Na sala de bate-papo
+  `#persistence <https://www.doctrine-project.org/slack>`_
+  do Slack
+- No
+  `Stack Overflow <http://stackoverflow.com/questions/tagged/doctrine-persistence>`_
+- Na
+  `lista de discussão do Doctrine <http://groups.google.com/group/doctrine-user>`_
+- Relatando uma falha no
+  `GitHub <https://github.com/doctrine/persistence/issues>`_.
 
 Começando
 ---------

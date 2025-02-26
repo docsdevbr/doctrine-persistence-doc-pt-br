@@ -1,30 +1,40 @@
-Introduction
-============
+:source_url: https://github.com/doctrine/persistence/blob/4.0.x/docs/en/reference/index.rst
+:revision: 7422aabf621f2d246e27cd7474a570c11f55da2e
+:status: ready
 
-The Doctrine Persistence project is a set of shared interfaces and functionality that the different Doctrine
-object mappers share. You can use these interfaces and abstract classes to build your own mapper if you don't
-want to use the full data mappers provided by Doctrine.
+:title: Introdução
 
-Installation
-============
+Introdução
+==========
 
-The library can easily be installed with composer.
+O projeto Doctrine Persistence é um conjunto de interfaces e funcionalidades
+compartilhadas que os diferentes mapeadores de objetos Doctrine compartilham.
+Você pode usar essas interfaces e classes abstratas para construir seu próprio
+mapeador se não quiser usar os mapeadores de dados completos fornecidos pelo
+Doctrine.
+
+Instalação
+==========
+
+A biblioteca pode ser facilmente instalada com o Composer.
 
 .. code-block:: sh
 
     $ composer require doctrine/persistence
 
-Overview
-========
+Visão geral
+===========
 
-The interfaces and functionality in this project evolved from building several different implementations of Doctrine
-object mappers. The first implementation was the ORM_ then came the `MongoDB ODM`_. A set of common interfaces were
-extracted from both projects and released in the `Doctrine Common`_ project. Over the years, more common functionality
-was extracted and eventually moved to this standalone project.
-After that, that project was itself split into several projects
-including this one.
+As interfaces e funcionalidades neste projeto evoluíram da construção de várias
+implementações diferentes de mapeadores de objetos Doctrine.
+A primeira implementação foi o ORM_, depois veio o `MongoDB ODM`_.
+Um conjunto de interfaces comuns foi extraído de ambos os projetos e lançado no
+projeto `Doctrine Common`_.
+Ao longo dos anos, mais funcionalidades comuns foram extraídas e, eventualmente,
+movidas para este projeto independente.
+Depois disso, esse projeto foi dividido em vários projetos, incluindo este.
 
-A Doctrine object mapper looks like this when implemented.
+Um mapeador de objetos Doctrine se parece com isso quando implementado.
 
 .. code-block:: php
 
@@ -56,12 +66,13 @@ A Doctrine object mapper looks like this when implemented.
 
     $users = $userRepository->findAll();
 
-To learn more about the full interfaces and functionality continue reading!
+Para saber mais sobre as interfaces e funcionalidades completas, continue lendo!
 
-Object Manager
-==============
+ObjectManager
+=============
 
-The main public interface that an end user will use is the ``Doctrine\Persistence\ObjectManager`` interface.
+A principal interface pública que uma pessoa usuária final usará é a interface
+``Doctrine\Persistence\ObjectManager``.
 
 .. code-block:: php
 
@@ -86,7 +97,8 @@ The main public interface that an end user will use is the ``Doctrine\Persistenc
 ObjectRepository
 ================
 
-The object repository is used to retrieve instances of your mapped objects from the mapper.
+O repositório de objetos é usado para recuperar instâncias dos seus objetos
+mapeados do mapeador.
 
 .. code-block:: php
 
@@ -101,11 +113,12 @@ The object repository is used to retrieve instances of your mapped objects from 
         public function getClassName();
     }
 
-Mapping
-=======
+Mapeamento
+==========
 
-In order for Doctrine to be able to persist your objects to a data store, you have to map the classes and class
-properties so they can be properly stored and retrieved while maintaining a consistent state.
+Para que o Doctrine consiga persistir seus objetos em um armazenamento de dados,
+você precisa mapear as classes e propriedades de classe para que elas possam ser
+armazenadas e recuperadas adequadamente, mantendo um estado consistente.
 
 ClassMetadata
 -------------
@@ -137,8 +150,8 @@ ClassMetadata
 ClassMetadataFactory
 --------------------
 
-The ``Doctrine\Persistence\Mapping\ClassMetadataFactory`` class can be used to manage the instances for each of
-your mapped PHP classes.
+A classe ``Doctrine\Persistence\Mapping\ClassMetadataFactory`` pode ser usada
+para gerenciar as instâncias de cada uma das suas classes PHP mapeadas.
 
 .. code-block:: php
 
@@ -153,12 +166,14 @@ your mapped PHP classes.
         public function isTransient($className);
     }
 
-Mapping Driver
-==============
+MappingDriver
+=============
 
-In order to load ``ClassMetadata`` instances you can use the ``Doctrine\Persistence\Mapping\Driver\MappingDriver``
-interface. This is the interface that does the core loading of mapping information from wherever they are stored.
-That may be in files, attributes, yaml, xml, etc.
+Para carregar instâncias ``ClassMetadata``, você pode usar a interface
+``Doctrine\Persistence\Mapping\Driver\MappingDriver``.
+Esta é a interface que faz o carregamento principal das informações de
+mapeamento de onde quer que elas estejam armazenadas.
+Isso pode ser em arquivos, atributos, yaml, xml, etc.
 
 .. code-block:: php
 
@@ -173,18 +188,22 @@ That may be in files, attributes, yaml, xml, etc.
         public function isTransient($className);
     }
 
-The Doctrine Persistence project offers a few base implementations that
-make it easy to implement your own XML, Attributes or YAML drivers.
+O projeto Doctrine Persistence oferece algumas implementações básicas que
+facilitam a implementação de seus próprios drivers XML, YAML ou de Atributos.
 
 FileDriver
 ----------
 
-The file driver operates in a mode where it loads the mapping files of individual classes on demand. This requires
-the user to adhere to the convention of 1 mapping file per class and the file names of the mapping files must
-correspond to the full class name, including namespace, with the namespace delimiters '\', replaced by dots '.'.
+O driver de arquivos opera em um modo em que carrega os arquivos de mapeamento
+de classes individuais sob demanda.
+Isso requer que a pessoa usuária siga a convenção de 1 arquivo de mapeamento por
+classe e os nomes dos arquivos de mapeamento devem corresponder ao nome completo
+da classe, incluindo namespace, com os delimitadores de namespace '\',
+substituídos por pontos '.'.
 
-Extend the ``Doctrine\Persistence\Mapping\Driver\FileDriver`` class to implement your own file driver.
-Here is an example JSON file driver implementation.
+Estenda a classe ``Doctrine\Persistence\Mapping\Driver\FileDriver`` para
+implementar seu próprio driver de arquivo.
+Aqui está um exemplo de implementação de driver de arquivo JSON.
 
 .. code-block:: php
 
@@ -196,7 +215,7 @@ Here is an example JSON file driver implementation.
         {
             $mappingFileData = $this->getElement($className);
 
-            // use the array of mapping information from the file to populate the $metadata instance
+            // use o array de informações de mapeamento do arquivo para preencher a instância $metadata
         }
 
         protected function loadMappingFile($file)
@@ -205,17 +224,18 @@ Here is an example JSON file driver implementation.
         }
     }
 
-Now you can use it like the following.
+Agora você pode usá-lo da seguinte forma:
 
 .. code-block:: php
 
     use Doctrine\Persistence\Mapping\Driver\DefaultFileLocator;
 
-    $fileLocator = new DefaultFileLocator('/path/to/mapping/files', 'json');
+    $fileLocator = new DefaultFileLocator('/caminho/para/arquivos/de/mapeamento', 'json');
 
     $jsonFileDriver = new JSONFileDriver($fileLocator);
 
-Now if you have a class named ``App\Model\User`` and you can load the mapping information like this.
+Agora, se você tem uma classe chamada ``App\Model\User``, pode carregar as
+informações de mapeamento da seguinte forma:
 
 .. code-block:: php
 
@@ -224,22 +244,22 @@ Now if you have a class named ``App\Model\User`` and you can load the mapping in
 
     $classMetadata = new ClassMetadata();
 
-    // looks for a file at /path/to/mapping/files/App.Model.User.json
+    // procura um arquivo em /caminho/para/arquivos/de/mapeamento/App.Model.User.json
     $jsonFileDriver->loadMetadataForClass(User::class, $classMetadata);
 
 
 PHPDriver
 ---------
-
-The PHPDriver includes PHP files which just populate ``ClassMetadata`` instances with plain PHP code.
+O ``PHPDriver`` inclui arquivos PHP que apenas preenchem instâncias
+``ClassMetadata`` com código PHP puro.
 
 .. code-block:: php
 
     use Doctrine\Persistence\Mapping\Driver\PHPDriver;
 
-    $phpDriver = new PHPDriver('/path/to/mapping/files');
+    $phpDriver = new PHPDriver('/caminho/para/arquivos/de/mapeamento');
 
-Now you can use it like the following:
+Agora você pode usá-lo da seguinte maneira:
 
 .. code-block:: php
 
@@ -248,12 +268,13 @@ Now you can use it like the following:
 
     $classMetadata = new ClassMetadata();
 
-    // looks for a PHP file at /path/to/mapping/files/App.Model.User.php
+    // procura um arquivo PHP em /caminho/para/arquivos/de/mapeamento/App.Model.User.php
     $phpDriver->loadMetadataForClass(User::class, $classMetadata);
 
-Inside the ``/path/to/mapping/files/App.Model.User.php`` file you can write raw PHP code to populate a ``ClassMetadata``
-instance. You will have access to a variable named ``$metadata`` inside the file that you can use to populate the
-mapping metadata.
+Dentro do arquivo ``/caminho/para/arquivos/de/mapeamento/App.Model.User.php``
+você pode escrever código PHP puro para popular uma instância ``ClassMetadata``.
+Você terá acesso a uma variável chamada ``$metadata`` dentro do arquivo que você
+pode usar para popular os metadados de mapeamento.
 
 .. code-block:: php
 
@@ -264,21 +285,22 @@ mapping metadata.
     // ...
 
 StaticPHPDriver
---------------
+---------------
 
-The StaticPHPDriver calls a static ``loadMetadata()`` method on your model classes where you can manually populate the
-``ClassMetadata`` instance.
+O ``StaticPHPDriver`` chama um método estático ``loadMetadata()`` em suas
+classes de modelo, onde você pode preencher manualmente a instância
+``ClassMetadata``.
 
 .. code-block:: php
 
-    $staticPHPDriver = new StaticPHPDriver('/path/to/classes');
+    $staticPHPDriver = new StaticPHPDriver('/caminho/para/classes');
 
     $classMetadata = new ClassMetadata();
 
-    // looks for a PHP file at /path/to/classes/App/Model/User.php
+    // procura um arquivo PHP em /caminho/para/classes/App/Model/User.php
     $phpDriver->loadMetadataForClass(User::class, $classMetadata);
 
-Your class in ``App\Model\User`` would look like the following.
+Sua classe em ``App\Model\User`` ficaria assim:
 
 .. code-block:: php
 
@@ -290,15 +312,16 @@ Your class in ``App\Model\User`` would look like the following.
 
         public static function loadMetadata(ClassMetadata $metadata)
         {
-            // populate the $metadata instance
+            // preenche a instância $metadata
         }
     }
 
-Reflection
-==========
+Reflexão
+========
 
-Doctrine uses reflection to set and get the data inside your objects. The
-``Doctrine\Persistence\Mapping\ReflectionService`` is the primary interface needed for a Doctrine mapper.
+O Doctrine usa reflexão para definir e obter os dados dentro de seus objetos.
+A ``Doctrine\Persistence\Mapping\ReflectionService`` é a interface primária
+necessária para um mapeador Doctrine.
 
 .. code-block:: php
 
@@ -314,17 +337,19 @@ Doctrine uses reflection to set and get the data inside your objects. The
         public function hasPublicMethod($class, $method);
     }
 
-Doctrine provides an implementation of this interface in the class named
+O Doctrine fornece uma implementação desta interface na classe chamada
 ``Doctrine\Persistence\Mapping\RuntimeReflectionService``.
 
-Implementations
-===============
+Implementações
+==============
 
-There are several different implementations of the Doctrine Persistence APIs.
+Existem várias implementações diferentes das APIs do Doctrine Persistence.
 
-- ORM_ - The Doctrine Object Relational Mapper is a data mapper for relational databases.
-- `MongoDB ODM`_ - The Doctrine MongoDB ODM is a data mapper for MongoDB.
-- `PHPCR ODM`_ - The Doctrine PHPCR ODM a data mapper built on top of the PHPCR API.
+- ORM_ - O Doctrine Object Relational Mapper é um mapeador de dados para bancos
+  de dados relacionais.
+- `MongoDB ODM`_ - O Doctrine MongoDB ODM é um mapeador de dados para MongoDB.
+- `PHPCR ODM`_ - O Doctrine PHPCR ODM é um mapeador de dados construído sobre a
+  API do PHPCR.
 
 .. _ORM: https://www.doctrine-project.org/projects/orm.html
 .. _MongoDB ODM: https://www.doctrine-project.org/projects/mongodb-odm.html

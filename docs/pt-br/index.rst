@@ -25,7 +25,7 @@ Você pode obter ajuda de diferentes fontes:
 Começando
 ---------
 
-A melhor maneira de começar é com a seção
-:doc:`Introdução <reference/index#introduction>` na documentação.
+A melhor maneira de começar é com a seção :doc:`Introdução <reference/index>`
+na documentação.
 Use a barra lateral para navegar por outras documentações do projeto Doctrine
 Persistence.

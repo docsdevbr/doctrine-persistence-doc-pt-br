@@ -1,22 +1,31 @@
-Persistence Documentation
-=========================
+:source_url: https://github.com/doctrine/persistence/blob/4.0.x/docs/en/index.rst
+:revision: 05a79c6faa93c8b0a1b6e4750e0f5af20737f0d6
+:status: ready
 
-The Doctrine Persistence documentation is a reference guide to everything you need
-to know about the project.
+:title: Documentação do Persistence
 
-Getting Help
-------------
+Documentação do Persistence
+===========================
 
-If this documentation is not helping to answer questions you have about the
-Doctrine Persistence project, don't panic. You can get help from different sources:
+A documentação do Doctrine Persistence é um guia de referência para tudo o que
+você precisa saber sobre o projeto.
 
--  Slack chat room `#persistence <https://www.doctrine-project.org/slack>`_
--  On `Stack Overflow <http://stackoverflow.com/questions/tagged/doctrine-persistence>`_
--  The `Doctrine Mailing List <http://groups.google.com/group/doctrine-user>`_
--  Report a bug on `GitHub <https://github.com/doctrine/persistence/issues>`_.
+Obtendo ajuda
+-------------
 
-Getting Started
----------------
+Se esta documentação não estiver ajudando a responder as dúvidas que você tem
+sobre o projeto Doctrine Persistence, não entre em pânico.
+Você pode obter ajuda de diferentes fontes:
 
-The best way to get started is with the :doc:`Introduction <reference/index#introduction>` section
-in the documentation. Use the sidebar to browse other documentation for the Doctrine Persistence project.
+-  Sala de bate-papo do Slack `#persistence <https://www.doctrine-project.org/slack>`_
+-  No `Stack Overflow <http://stackoverflow.com/questions/tagged/doctrine-persistence>`_
+-  A `lista de discussão do Doctrine <http://groups.google.com/group/doctrine-user>`_
+-  Relatando uma falha no `GitHub <https://github.com/doctrine/persistence/issues>`_.
+
+Começando
+---------
+
+A melhor maneira de começar é com a seção
+:doc:`Introdução <reference/index#introduction>` na documentação.
+Use a barra lateral para navegar por outras documentações do projeto Doctrine
+Persistence.

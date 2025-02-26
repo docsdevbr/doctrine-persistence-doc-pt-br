@@ -15,8 +15,8 @@ Esta abordagem é baseada no
 `padrão observador <https://pt.wikipedia.org/wiki/Observer>`_ e consiste nas
 duas interfaces a seguir:
 
- * ``Doctrine\Persistence\NotifyPropertyChanged``, que é implementada pelo objeto
-   cujas mudanças podem ser rastreadas,
+ * ``Doctrine\Persistence\NotifyPropertyChanged``, que é implementada pelo
+   objeto cujas mudanças podem ser rastreadas,
  * ``Doctrine\Persistence\PropertyChangedListener``, que é implementada por
    assinantes que estão interessados em rastrear as mudanças.
 

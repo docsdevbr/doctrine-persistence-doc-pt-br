@@ -1,26 +1,31 @@
-.. object_change_tracking:
+:source_url: https://github.com/doctrine/persistence/blob/4.0.x/docs/en/reference/object-change-tracking.rst
+:revision: 528e2d0d1c8663a2f46b05a0bf4876a9a58b9f86
+:status: ready
 
-Object Change Tracking
-======================
+:title: Rastreamento de mudanças de objeto
 
-Change tracking is the process of determining what has changed in
-observed objects since the last time they were synchronized with
-the persistence backend.
+Rastreamento de mudanças de objeto
+==================================
 
-This approach is based on `the observer pattern <https://en.wikipedia.org/wiki/Observer_pattern>`_
-and consists of the following two interfaces:
+O rastreamento de mudanças é o processo de determinar o que mudou em objetos
+observados desde a última vez que eles foram sincronizados com o backend de
+persistência.
 
- * ``Doctrine\Persistence\NotifyPropertyChanged`` that is implemented by the object
-   whose changes can be tracked,
- * ``Doctrine\Persistence\PropertyChangedListener`` that is implemented by subscribers
-   which are interested in tracking the changes.
+Esta abordagem é baseada no
+`padrão observador <https://pt.wikipedia.org/wiki/Observer>`_ e consiste nas
+duas interfaces a seguir:
 
-Notifying subscribers
-~~~~~~~~~~~~~~~~~~~~~
+ * ``Doctrine\Persistence\NotifyPropertyChanged``, que é implementada pelo objeto
+   cujas mudanças podem ser rastreadas,
+ * ``Doctrine\Persistence\PropertyChangedListener``, que é implementada por
+   assinantes que estão interessados em rastrear as mudanças.
 
-A class that wants to allow other objects to subscribe needs to
-implement the ``NotifyPropertyChanged`` interface. As a guideline,
-such an implementation can look as follows:
+Notificando assinantes
+~~~~~~~~~~~~~~~~~~~~~~
+
+Uma classe que deseja permitir que outros objetos assinem precisa implementar a
+interface ``NotifyPropertyChanged``.
+Como uma diretriz, tal implementação pode parecer com a seguinte:
 
 .. code-block:: php
 
@@ -42,10 +47,10 @@ such an implementation can look as follows:
         }
     }
 
-Then, in each mutator of this class or any derived classes, you
-need to notify all the ``PropertyChangedListener`` instances. As an
-example we add a convenience method on ``MyTrackedObject`` that shows
-this behavior:
+Então, em cada mutador dessa classe ou de quaisquer classes derivadas, você
+precisa notificar todas as instâncias de ``PropertyChangedListener``.
+Como exemplo, adicionamos um método de conveniência em ``MyTrackedObject`` que
+mostra esse comportamento:
 
 .. code-block:: php
 
@@ -75,9 +80,10 @@ this behavior:
         }
     }
 
-You have to invoke ``notifySubscribers()`` inside every method that
-changes the persistent state of ``MyTrackedObject``.
+Você tem que invocar ``notifySubscribers()`` dentro de cada método que altera o
+estado persistente de ``MyTrackedObject``.
 
-The check whether the new value is different from the old one is
-not mandatory but recommended. That way you also have full control
-over when you consider a property changed.
+A verificação se o novo valor é diferente do antigo não é obrigatória, mas
+recomendada.
+Dessa forma, você também tem controle total sobre quando considera uma
+propriedade alterada.
